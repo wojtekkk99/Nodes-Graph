@@ -14,48 +14,26 @@ class Node:
         self.value = value
         self.neighbour = neighbour
 
-
-class Tree:
-    """
-    Represents graph.
-    """
-    def __init__(self):
-        """
-
-        """
-        self.nodes_tree = []
-
-    def add_node(self, node: Node) -> None:
-        """
-        Add node to graph
-        :param node: node
-        :return: None
-        """
-        self.nodes_tree.append(node)
-
-    def sum_value(self, node) -> int:
+    def sum_value(self) -> int:
         """
         Counts sum of the values in subgraph
-        :param node: node for which we search subtree
         :return: sum of values
         """
-        return sum(find_subgraph(node))
+        return sum(find_subgraph(self))
 
-    def medium_value(self, node) -> float:
+    def medium_value(self) -> float:
         """
         Counts medium value in subgraph
-        :param node: node for which we search subtree
         :return: medium value from subgraph
         """
-        return self.sum_value(node) / len(find_subgraph(node))
+        return self.sum_value() / len(find_subgraph(self))
 
-    def median(self, node) -> int:
+    def median(self) -> int:
         """
         Counts median in subgraph
-        :param node: node for which we search subtree
         :return: median from subgraph
         """
-        subgraph = sorted(find_subgraph(node))
+        subgraph = sorted(find_subgraph(self))
         return subgraph[int(len(subgraph)/2)] if len(subgraph) % 2 is 1 else \
             (subgraph[int(len(subgraph)/2)] + subgraph[int(len(subgraph)/2) - 1]) / 2
 
@@ -82,3 +60,16 @@ def find_subgraph(node: Node) -> List[int]:
         return sublist
 
     return subgraph_list([], node, [])
+
+p1 = Node(2, [])
+p2 = Node(5, [])
+p3 = Node(3, [p1, p2])
+p4 = Node(5, [])
+p5 = Node(8, [p4])
+p6 = Node(2, [])
+p7 = Node(0, [p6, p5])
+p8 = Node(1, [])
+p9 = Node(7, [p8, p7])
+p10 = Node(5, [p9, p3])
+
+print(p7.sum_value())

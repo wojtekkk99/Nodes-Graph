@@ -1,5 +1,5 @@
 import pytest
-from src.code import Node, Tree
+from src.code import Node
 
 
 @pytest.fixture(scope='session')
@@ -17,38 +17,30 @@ def list_nodes_from_task():
     return [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]
 
 
-@pytest.fixture(scope='session')
-def create_graph(list_nodes_from_task):
-    graph = Tree()
-    for node_ in list_nodes_from_task:
-        graph.add_node(node_)
-    return graph
-
-
 @pytest.mark.parametrize(
     'node, result_sum', [
-        (4, 6.5),
+        (4, 13),
         (0, 2),
-        (9, 4),
-        (2, 3),
-        (6, 3.5),
+        (9, 38),
+        (2, 10),
+        (6, 15),
     ]
 )
-def test_sum_value(create_graph, list_nodes_from_task, node, result_sum):
-    assert create_graph.sum_value(list_nodes_from_task[node]) == result_sum
+def test_sum_value(list_nodes_from_task, node, result_sum):
+    assert list_nodes_from_task[node].sum_value() == result_sum
 
 
 @pytest.mark.parametrize(
     'node, result_medium', [
         (4, 6.5),
         (0, 2),
-        (9, 4),
-        (2, 3),
-        (6, 3.5),
+        (9, 3.8),
+        (2, 3.33),
+        (6, 3.75),
     ]
 )
-def test_medium_value(create_graph, list_nodes_from_task, node, result_medium):
-    assert round(create_graph.medium_value(list_nodes_from_task[node]), 2) == result_medium
+def test_medium_value(list_nodes_from_task, node, result_medium):
+    assert round(list_nodes_from_task[node].medium_value(), 2) == result_medium
 
 
 @pytest.mark.parametrize(
@@ -60,5 +52,5 @@ def test_medium_value(create_graph, list_nodes_from_task, node, result_medium):
         (6, 3.5),
     ]
 )
-def test_sum_value(create_graph, list_nodes_from_task, node, result_median):
-    assert create_graph.median(list_nodes_from_task[node]) == result_median
+def test_sum_value(list_nodes_from_task, node, result_median):
+    assert list_nodes_from_task[node].median() == result_median
