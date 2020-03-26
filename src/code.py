@@ -3,7 +3,7 @@ from typing import List
 
 class Node:
     """
-    Represents one Node.
+    Class represents Node.
     """
     def __init__(self, value: int, neighbour: List['Node']):
         """
