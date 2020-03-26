@@ -60,16 +60,3 @@ def find_subgraph(node: Node) -> List[int]:
         return sublist
 
     return subgraph_list([], node, [])
-
-p1 = Node(2, [])
-p2 = Node(5, [])
-p3 = Node(3, [p1, p2])
-p4 = Node(5, [])
-p5 = Node(8, [p4])
-p6 = Node(2, [])
-p7 = Node(0, [p6, p5])
-p8 = Node(1, [])
-p9 = Node(7, [p8, p7])
-p10 = Node(5, [p9, p3])
-
-print(p7.sum_value())
